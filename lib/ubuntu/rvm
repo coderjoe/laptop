@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+LOGFILE=rvm.log
 
 echo "Installing RVM (Ruby Version Manager) ..."
-  curl -s https://rvm.beginrescueend.com/install/rvm -o rvm-installer ; chmod +x rvm-installer ; ./rvm-installer --version latest
+  curl -s https://rvm.beginrescueend.com/install/rvm -o rvm-installer ; chmod +x rvm-installer ; ./rvm-installer --version latest &>${LOGFILE}
