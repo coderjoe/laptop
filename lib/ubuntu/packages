@@ -1,20 +1,24 @@
 #!/usr/bin/env bash
 LOGFILE=packages.log
 
-echo "Using apt-get to install OS packages so let's update it first ..."
+GREEN='\e[0;32m'
+RED='\e[0;31m'
+NC='\e[0m' #no color
+
+echo -e "${NC}Using apt-get to install OS packages so let's update first ..."
   sudo apt-get update -y >${LOGFILE}
 
-echo "Installing OS packages. You will be prompted for your password ..."
+echo -e "${GREEN}Installing OS packages.${NC}"
   sudo apt-get install build-essential bison openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-0 libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf libc6-dev -y >${LOGFILE}
 
-echo "Install Postgres, a great open source relational database ..."
+echo -e "${GREEN}Installing Postgres${NC}, a great open source relational database ..."
   sudo apt-get install libpq5 libpq-dev postgresql -y >${LOGFILE}
 
-echo "Install Redis, a key-value database ..."
+echo -e "${GREEN}Installing Redis${NC}, a key-value database ..."
   sudo apt-get install redis-server -y >${LOGFILE}
 
-echo "Installing ack, a good way to search through files ..."
+echo -e "${GREEN}Installing ack${NC}, a good way to search through files ..."
   sudo apt-get install ack-grep -y >${LOGFILE}
 
-echo "Installing ImageMagick, good for cropping and re-sizing images ..."
+echo -e "${GREEN}Installing ImageMagick${NC}, good for cropping and re-sizing images ..."
   sudo apt-get install imagemagick --fix-missing -y >${LOGFILE}

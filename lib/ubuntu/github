@@ -1,12 +1,24 @@
 #!/usr/bin/env bash
 LOGFILE=github.log
+
+GREEN='\e[0;32m'
+RED='\e[0;31m'
+NC='\e[0m' #no color
+
 OPENCMD=open
 [[ -f /usr/bin/kde-open ]] && OPENCMD=kde-open
 [[ -f /usr/bin/gnome-open ]] && OPENCMD=gnome-open
 
-echo "Checking for SSH key, generating one if it exists ..."
+if [ ! -f /usr/bin/xclip ]; then
+  echo -e "${RED} !!!${NC} Installing xclip command line interface to X clipboard ..."
+  sudo apt-get install xclip -y >${LOGFILE}
+fi
+
+echo -e "${GREEN}Checking for SSH key, generating one if it exists ...${NC}"
   [[ -f ~/.ssh/id_rsa.pub ]] || ssh-keygen -t rsa 
 
-echo "Copying public key to clipboard. Paste it into your Github account ..."
+
+echo -e "${GREEN}Copying public key to clipboard. Paste it into your Github account ..."
+echo -e "${NC}"
   [[ -f ~/.ssh/id_rsa.pub ]] && cat ~/.ssh/id_rsa.pub | xclip
   ${OPENCMD} https://github.com/account/ssh
